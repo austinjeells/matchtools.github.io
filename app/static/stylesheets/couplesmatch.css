@@ -1,0 +1,168 @@
+body {
+    background-image: url('../images/LinenTexture.jpg');
+}
+
+th, td {
+    border-top: none !important;
+}
+
+dd {
+    margin-bottom: 15px;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.delBtn {
+    color: firebrick;
+    float: right;
+    padding-right: 0;
+}
+
+.locGlyph {
+    font-size: x-large;
+    color: #87cefa;
+    line-height: inherit;
+    width: inherit;
+}
+
+.glyphicon-remove {
+    font-size: 1.4em;
+}
+
+.submitButton {
+    text-align: center;
+}
+
+.centerButton {
+    text-align: center;
+}
+
+.colLabel {
+    font-weight: bolder;
+}
+
+.rankListRow {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.modal-title {
+    display: inline-block;
+}
+
+.twitter-typeahead {
+    width: 100%;
+}
+
+.tt-menu {
+    background: whitesmoke;
+    opacity: 0.9;
+}
+
+.setDistance {
+    display: flex;
+}
+
+.tooltipIcon {
+    padding-left: 5px;
+    margin-top: -4px;
+    font-weight: 600;
+    color: #248ad6;
+}
+
+.distInfoTooltip {
+    width: 100%;
+}
+
+.indSubRow {
+    margin-bottom: 10px;
+}
+
+.modalBtn {
+    position: absolute;
+    right: 8%;
+}
+
+.confirmationTable {
+    font-size: 16px;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.noMatchCol {
+    text-align: center;
+}
+
+.retrieveRow {
+    margin-bottom: 20px;
+}
+
+.instructionsList {
+    margin-bottom: 0;
+}
+
+#header {
+    color: ghostwhite;
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    justify-content: center;
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+#inputRowsContainer {
+    margin-bottom: 150px;
+}
+
+#input-container {
+    width: 80%;
+}
+
+#deletionColumn {
+    padding-right: 0;
+}
+
+#buttonRow {
+    margin-bottom: 30px;
+}
+
+#modalColumnLabelsRow {
+    margin-bottom: 20px;
+}
+
+#indSubBtn {
+    float: right;
+}
+
+#indSubIcon {
+    float: right;
+    font-size: 14px;
+    margin-top: -2px;
+}
+
+#indModalLabels {
+    margin-bottom: 10px;
+}
+
+#indIDRow {
+    margin-bottom: 20px;
+}
+
+#createIDBtn {
+    background-color: #e6e6e6;
+}
+
+#indIDRow > .col-sm-1 {
+    width: 5%;
+    left: -1%;
+    padding-top: 1%;
+}
+
+.indSubInstructions .panel {
+    margin-bottom: 0;
+}
