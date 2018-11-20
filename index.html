@@ -56,83 +56,11 @@
           <div class="card mb-4">
               <h5 class="card-header">Step 1: Select Specialties</h5>
               <div class="card-body text-center">
-                  <select class="custom-select"type="text" name="Spec1DropValue" required/>
-                    <option value="" disabled selected>Select Specialty</option>
-                    <option value="Allergy and Immunology">Allergy and Immunology</option>
-                    <option value="Anesthesiology">Anesthesiology</option>
-                    <option value="Colon and Rectal Surgery">Colon and Rectal Surgery</option>
-                    <option value="Dermatology">Dermatology</option>
-                    <option value="Emergency Medicine">Emergency Medicine</option>
-                    <option value="Family Medicine">Family Medicine</option>
-                    <option value="Internal Medicine">Internal Medicine</option>
-                    <option value="Internal Medicine/Pediatrics">Internal Medicine/Pediatrics</option>
-                    <option value="Medical Genetics and Genomics">Medical Genetics and Genomics</option>
-                    <option value="Neurological Surgery">Neurological Surgery</option>
-                    <option value="Neurology">Neurology</option>
-                    <option value="Child Neurology">Neurology, Child</option>
-                    <option value="Nuclear Medicine">Nuclear Medicine</option>
-                    <option value="Obstetrics and Gynecology">Obstetrics and Gynecology</option>
-                    <option value="Ophthalmology">Ophthalmology</option>
-                    <option value="Orthopaedic Surgery">Orthopaedic Surgery</option>
-                    <option value="Osteopathic Neuromusculoskeletal Medicine">Osteopathic Neuromusculoskeletal Medicine</option>
-                    <option value="Otolaryngology">Otolaryngology</option>
-                    <option value="Pathology-Anatomic and Clinical">Pathology-Anatomic and Clinical</option>
-                    <option value="Pediatrics">Pediatrics</option>
-                    <option value="Physical Medicine and Rehabilitation">Physical Medicine and Rehabilitation</option>
-                    <option value="Plastic Surgery">Plastic Surgery</option>
-                    <option value="Plastic Surgery - Integrated">Plastic Surgery - Integrated</option>
-                    <option value="Preventive Medicine">Preventive Medicine</option>
-                    <option value="Psychiatry">Psychiatry</option>
-                    <option value="Radiation Oncology">Radiation Oncology</option>
-                    <option value="Diagnostic Radiology">Radiology, Diagnostic</option>
-                    <option value="Interventional Radiology - Integrated">Radiology, Interventional - Integrated</option>
-                    <option value="Surgery">Surgery</option>
-                    <option value="Thoracic Surgery">Thoracic Surgery</option>
-                    <option value="Thoracic Surgery - Integrated">Thoracic Surgery - Integrated</option>
-                    <option value="Transitional Year">Transitional Year</option>
-                    <option value="Urology">Urology</option>
-                    <option value="Vascular Surgery - Integrated">Vascular Surgery - Integrated</option>
-                    <option value= "" disabled>Fellowships</option>
-                    <option value="Pulmonary Disease and Critical Care">Pulmonary Disease and Critical Care</option>
+                  <select class="custom-select"type="text" " id="Specialty1" required/>
+                    <option value="">Select Specialty</option>
                   </select>
-                  <select class="custom-select"type="text" name="Spec2DropValue" style="margin-top: 20px" required/>
-                    <option value="" disabled selected>Select Specialty</option>
-                    <option value="Allergy and Immunology">Allergy and Immunology</option>
-                    <option value="Anesthesiology">Anesthesiology</option>
-                    <option value="Colon and Rectal Surgery">Colon and Rectal Surgery</option>
-                    <option value="Dermatology">Dermatology</option>
-                    <option value="Emergency Medicine">Emergency Medicine</option>
-                    <option value="Family Medicine">Family Medicine</option>
-                    <option value="Internal Medicine">Internal Medicine</option>
-                    <option value="Internal Medicine/Pediatrics">Internal Medicine/Pediatrics</option>
-                    <option value="Medical Genetics and Genomics">Medical Genetics and Genomics</option>
-                    <option value="Neurological Surgery">Neurological Surgery</option>
-                    <option value="Neurology">Neurology</option>
-                    <option value="Child Neurology">Neurology, Child</option>
-                    <option value="Nuclear Medicine">Nuclear Medicine</option>
-                    <option value="Obstetrics and Gynecology">Obstetrics and Gynecology</option>
-                    <option value="Ophthalmology">Ophthalmology</option>
-                    <option value="Orthopaedic Surgery">Orthopaedic Surgery</option>
-                    <option value="Osteopathic Neuromusculoskeletal Medicine">Osteopathic Neuromusculoskeletal Medicine</option>
-                    <option value="Otolaryngology">Otolaryngology</option>
-                    <option value="Pathology-Anatomic and Clinical">Pathology-Anatomic and Clinical</option>
-                    <option value="Pediatrics">Pediatrics</option>
-                    <option value="Physical Medicine and Rehabilitation">Physical Medicine and Rehabilitation</option>
-                    <option value="Plastic Surgery">Plastic Surgery</option>
-                    <option value="Plastic Surgery - Integrated">Plastic Surgery - Integrated</option>
-                    <option value="Preventive Medicine">Preventive Medicine</option>
-                    <option value="Psychiatry">Psychiatry</option>
-                    <option value="Radiation Oncology">Radiation Oncology</option>
-                    <option value="Diagnostic Radiology">Radiology, Diagnostic</option>
-                    <option value="Interventional Radiology - Integrated">Radiology, Interventional - Integrated</option>
-                    <option value="Surgery">Surgery</option>
-                    <option value="Thoracic Surgery">Thoracic Surgery</option>
-                    <option value="Thoracic Surgery - Integrated">Thoracic Surgery - Integrated</option>
-                    <option value="Transitional Year">Transitional Year</option>
-                    <option value="Urology">Urology</option>
-                    <option value="Vascular Surgery - Integrated">Vascular Surgery - Integrated</option>
-                    <option value= "" disabled>Fellowships</option>
-                    <option value="Pulmonary Disease and Critical Care">Pulmonary Disease and Critical Care</option>
+                  <select class="custom-select"type="text" id="Specialty2" style="margin-top: 20px" required/>
+                    <option value="">Select Specialty</option>
                   </select>
               </div>
           </div>
@@ -165,77 +93,72 @@
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>
-      var JSONarr = [
-        {
-        "id": 1,
-        "name": "Allergy and Immunology",
-        "specialty": "-",
-        "location": "-",
-        "latitude": "-",
-        "longitude": "-",
-        "parent_id": 0
-        },
-        {
-        "id": 2,
-        "name": "Anesthesiology",
-        "specialty": "-",
-        "location": "-",
-        "latitude": "-",
-        "longitude": "-",
-        "parent_id": 0
-        },
-        {
-        "id": 3,
-        "name": "Child Neurology",
-        "specialty": "-",
-        "location": "-",
-        "latitude": "-",
-        "longitude": "-",
-        "parent_id": 0
-        },
-        {
-        "id": 37,
-        "name": "Albany Medical Center Program",
-        "specialty": "Allergy and Immunology",
-        "location": "Albany, NY 12203   ",
-        "latitude": 42.6823182,
-        "longitude": -73.8477874,
-        "parent_id": 1
-        },
-        {
-        "id": 38,
-        "name": "Baylor College of Medicine Program",
-        "specialty": "Allergy and Immunology",
-        "location": "Houston, TX 77030 ",
-        "latitude": 29.7050857,
-        "longitude": -95.40180869999999,
-        "parent_id": 1
-        },
-        {
-        "id": 39,
-        "name": "Boston University Medical Center Program",
-        "specialty": "Allergy and Immunology",
-        "location": "Boston, MA 02118 ",
-        "latitude": 42.3377967,
-        "longitude": -71.0705763,
-        "parent_id": 1
-        }
-      ]
+      
 
       // $(document).ready(function(){
       //     $.getJSON("JSONarr",function(data){
       //        console.log('JSON loaded as array!');
       //        console.log(data);
 
-      //        // var JSONdata = [];
-      //        // $.each(data,function(key,value){
+      //        var JSONdata = [];
+      //        $.each(data,function(key,value){
 
-      //        // });
+      //        });
       //     });
 
       //     //or use this instead
       //     var JSONarr = JSON.parse($.getJSON("JSONarr.json"))
       // });
+
+      // $.ajax({
+      //   url: 'JSONarr.json',
+      //   dataType: 'json',
+      //   type:'get',
+      //   cache: false,
+      //   success: function(data){
+      //     //console.log(data);
+      //     var JSONarr = ''
+      //     $(data).each(function(index,value){
+      //       //console.log(value);
+      //       var JSONarr = JSONarr + value;
+      //       console.log(JSONarr);
+      //     })
+      //   }
+      // })
+
+
+      $(document).ready(function(){
+
+       load_json_data('Specialty');
+       load_json_data('Specialty');
+
+       function load_json_data(id, parent_id){
+        var html_code = '';
+        $.getJSON('JSONarr.json', function(data){
+
+         html_code += '<option value="">Select Specialty</option>';
+         $.each(data, function(key, value){
+          if(id == 'Specialty'){
+           if(value.parent_id == '0'){
+            html_code += '<option value="'+value.id+'">'+value.name+'</option>';
+           }
+          }
+          else{
+           if(value.parent_id == parent_id){
+            html_code += '<option value="'+value.id+'">'+value.name+'</option>';
+           }
+          }
+         });
+         //$('#'+id).html(html_code);
+         $('#Specialty2').html(html_code);
+         $('#Specialty1').html(html_code);
+        });
+       }
+      });
+
+
+
+
 
 
       function sendText(e) {
@@ -249,16 +172,68 @@
           vMaxDist: e.target['MaxDist'].value
         }
         //Put in new code for calculating from JSON here
-        $.getJSON("JSONarr.json", function(result){
-          $.each(result, function(i, field){
-            $("div").append(field + " ");
-          });
-        });
+        // $.getJSON("JSONarr.json", function(result){
+        //   $.each(result, function(i, field){
+        //     $("div").append(field + " ");
+        //   });
+        // });
 
-
-        // google.script.run.withSuccessHandler(function(response) {
-        //   console.log(response)}).sendText(data);
-        // google.script.run.withSuccessHandler(getFromSpreadsheet).getResults();
+        var JSONarr = [
+          {
+          "id": 1,
+          "name": "Allergy and Immunology",
+          "specialty": "-",
+          "location": "-",
+          "latitude": "-",
+          "longitude": "-",
+          "parent_id": 0
+          },
+          {
+          "id": 2,
+          "name": "Anesthesiology",
+          "specialty": "-",
+          "location": "-",
+          "latitude": "-",
+          "longitude": "-",
+          "parent_id": 0
+          },
+          {
+          "id": 3,
+          "name": "Child Neurology",
+          "specialty": "-",
+          "location": "-",
+          "latitude": "-",
+          "longitude": "-",
+          "parent_id": 0
+          },
+          {
+          "id": 37,
+          "name": "Albany Medical Center Program",
+          "specialty": "Allergy and Immunology",
+          "location": "Albany, NY 12203   ",
+          "latitude": 42.6823182,
+          "longitude": -73.8477874,
+          "parent_id": 1
+          },
+          {
+          "id": 38,
+          "name": "Baylor College of Medicine Program",
+          "specialty": "Allergy and Immunology",
+          "location": "Houston, TX 77030 ",
+          "latitude": 29.7050857,
+          "longitude": -95.40180869999999,
+          "parent_id": 1
+          },
+          {
+          "id": 39,
+          "name": "Boston University Medical Center Program",
+          "specialty": "Allergy and Immunology",
+          "location": "Boston, MA 02118 ",
+          "latitude": 42.3377967,
+          "longitude": -71.0705763,
+          "parent_id": 1
+          }
+        ]
       }
       
       
