@@ -123,7 +123,7 @@
       function evaluateData(e) {
         e.preventDefault();
         $(".modal").modal('show');
-        setTimeout(function () {$('.modal').modal('hide')}, 20000);
+        setTimeout(function () {$('.modal').modal('hide')}, 2000);
         
         var submittedData = {
           vSpec1DropValue: e.target['Specialty1'].value, 
@@ -154,53 +154,75 @@
       }
      
     function processData(spec1json, spec2json, submittedData){
-      console.log(spec1json);
-      console.log(spec2json);
-
+      //console.log(spec1json);
+      //console.log(spec2json);
+      var distCalc = ''
+      var filteredCombinedJSON = [];
       //TODO use this method for passing through each in the jsons. spec1json[i].latitude
       $.each(spec1json, function(i, value){
         $.each(spec2json, function(j, value){
           //enter code to cycle through both
-          console.log(spec1json[i].latitude);
-          //console.log(spec1json[i].longitude);
-          //console.log(spec2json[j].latitude);
-          //console.log(spec2json[j].longitude);
           spec1lat = spec1json[i].latitude;
           spec1long = spec1json[i].longitude;
           spec2lat = spec2json[j].latitude;
           spec2long = spec2json[j].longitude;
-        })
-      })
-      
-      //sendDataToTable(calculatedData);
+          
+          distCalc = Math.acos(Math.cos((90-spec2lat)*(Math.PI/180))*Math.cos((90-spec1lat)*(Math.PI/180))+Math.sin((90-spec2lat)*(Math.PI/180))*Math.sin((90-spec1lat)*(Math.PI/180))*Math.cos((spec2long-spec1long)*(Math.PI/180)))*6371;
+          distCalc = distCalc.toFixed(1);
+          if(distCalc <= submittedData.vMaxDist){
+            filteredCombinedJSON.push({
+              "Name1": spec1json[i].name,
+              "Name2": spec2json[j].name,
+              "Specialty1": spec1json[i].specialty,
+              "Specialty2": spec2json[j].specialty,
+              "Location1": spec1json[i].location,
+              "Location2": spec2json[j].location,
+              "Latitude1": spec1lat, 
+              "Latitude2": spec2lat,
+              "Longitude1": spec1long,
+              "Longitude2": spec2long,
+              "Distance": distCalc
+            });
+          }
+        });
+      });
+      //console.log(filteredCombinedJSON)
+      sendDataToTable(filteredCombinedJSON);
     }
         
+    //function to create two unfiltered columns containing all programs in each specialty when the specialties are selected
+    function createHTMLtable(){
 
-      //function to display data
-      function sendDataToTable(calculatedData){  
-          if (document.getElementById("resultsTable_wrapper")) {
-            document.getElementById("resultsTable_wrapper").remove()}
-          var spec1Name = calculatedData[1];
-          var spec2Name = calculatedData[2];
-          var calculatedData = calculatedData[0];
-          
-          var table = document.createElement("table");
-          table.id = 'resultsTable';
-          table.setAttribute("class","table table-striped table-hover table-sm table-bordered");
+    };
 
-          document.getElementById("resultsContainer").append(table);
-          
-          //makes table into a dataTable
-          $(document).ready(function() {
-            $('#resultsTable').DataTable( {
-                data: calculatedData,
-                columns: [{ title: spec2Name},{ title: "Location" },{ title: "Distance" },{ title: spec1Name },{ title: "Location" }],
-                //paging: false,
-                "order": [ 2, 'asc' ],
-                "lengthMenu": [ [-1, 25, 50, 100], ["All", 25, 50, 100] ]
-            } );
-          } );
-      }
+
+    //function to display data
+    function sendDataToTable(filteredCombinedJSON){
+      //console.log(filteredCombinedJSON)  
+      if (document.getElementById("resultsTable_wrapper")){document.getElementById("resultsTable_wrapper").remove()}
+      else{console.log('didnt pass remove test')}
+
+      var tableData = '<table class = "table table-striped table-hover table-sm table-bordered" id = "resultsTable"><thead><tr><th>Name</th><th>Name</th><th>Name</th><th>Name</th><th>Name</th></tr></thead><tbody>';
+      $.each(filteredCombinedJSON, function(key,value){
+        tableData += '<tr>';
+        tableData += '<td>'+value.Name1+'</td>';
+        tableData += '<td>'+value.Location1+'</td>';
+        tableData += '<td>'+value.Distance+'</td>';
+        tableData += '<td>'+value.Name2+'</td>';
+        tableData += '<td>'+value.Location2+'</td>';
+        tableData += '</tr>';
+      });
+      tableData += '</tbody></table>';
+      //console.log(tableData);
+
+      $('#resultsContainer').append(tableData);
+      $('#resultsTable').DataTable({
+        columns: [{ title: filteredCombinedJSON[1].Specialty1},{ title: "Location"},{ title: "Distance" },{ title: filteredCombinedJSON[1].Specialty2},{ title: "Location" }],
+          //paging: false,
+          "order": [ 2, 'asc' ],
+          "lengthMenu": [ [-1, 25, 50, 100], ["All", 25, 50, 100] ]
+      }); 
+    };
       
       
       //function to remove old table
