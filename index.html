@@ -3,14 +3,19 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
-      <meta http-equiv="content-type" content="text/plain; charset=UTF-8"/>
-      <!-- Bootstrap CSS -->
+      <meta name="description" content="">
+      <meta name="author" content="">
+
+      <title>Couples Match Tool</title>
+
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
   </head>
   <style>
+      /*#map {
+        height: 100%;
+      }*/
       .bd-example-modal-lg .modal-dialog{
         display: table;
         position: relative;
@@ -22,6 +27,15 @@
         background-color: transparent;
         border: none;
       }
+
+      .modal-title {
+        display: inline-block;
+      }
+
+      .modal-xl {
+        width: 95%;
+        max-width:1500px;
+      } 
   </style>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
@@ -35,8 +49,11 @@
                 <li class="nav-item">
                     <button type="button "class="btn btn-info" onclick="location.reload()">Home</button>
                 </li>
+                <li>
+                    <button type="button" class="btn btn-info"href="#" id="helpNav">Help</button>
+                </li>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-info"onclick="javascript:xport.toCSV('resultsTable', 'Match List Results')"  href="#">Export to CSV</button>
+                    <button type="button" class="btn btn-info"onclick="javascript:xport.toCSV('resultsTable', 'Match List Results')"  href="#">Export to Excel</button>
                 </li>
             </ul>
         </div>
@@ -44,9 +61,6 @@
     
     <div class="jumbotron" style="padding-top: 20px; padding-bottom: 10px">
         <h1 class="display-4">Couples Match Calculator</h1>
-        <p class="lead">My wife and I will be applying to The Match. We have had a lot of difficulty identifying 
-                        which specialty programs are near each other. So I created this program to calculate the distance between 
-                        programs then filter them by a maximum distance. I hope you find this to be useful.</p>
     </div>
        
     <div class="container-fluid"style="padding-right: 5%; padding-left: 5%">   
@@ -69,20 +83,112 @@
           <div class="card mb-4">
               <h5 class="card-header">Step 2: Select Maximum Distance</h5>
               <div class="card-body text-center">
-                  <div><input class="form-control" type="number" name="MaxDist" placeholder="Max Distance (Miles)" max="200" min="0" required></div>
+                  <div><input class="form-control" type="number" name="MaxDist" placeholder="Max Distance (Miles)" max= "6000" min="0" required></div>
+              </div>
+              <div class="card-body text-center" style="padding-top: 0%">
+                      <button type="button" class="btn btn-outline-info"href="#" id="helpNav" onclick="displayAllPrograms(event)">View All Programs from Selected Specialties</button>
               </div>
           </div>
       </div>
       <div class="container h-100">
           <div class="row h-100 justify-content-center align-items-center">
-             <input class="btn btn-outline-info btn-md mb-4" type="submit" value="Submit"/>
+             <input id="submitBtn" class="btn btn-outline-info btn-md mb-4" type="submit" value="Submit"/>
           </div>
       </div>
     </div>
     </form>
     </div>
-    <div id="resultsContainer"class="container-fluid mb-4 table-responsive" style="padding-right: 5%; padding-left: 5%"></div>  
+    <div id="resultsContainer" class="container-fluid mb-4" style="padding-right: 5%; padding-left: 5%">
+      <!--<div id="map"></div>-->
+    </div>  
     
+    <!--help modal-->
+    <div class="modal fade" id="helpModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Help for Couples Match Tool</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <dl>
+                    <dt>About</dt>
+                    <dd>
+                        Matching into a residency is stressful and couples matching is even more stressful. When looking at programs, my wife and I wanted to be in the same city but had trouble figuring out which are close to each other. I created this program to calculate the distance between programs, then filter them by a maximum distance. I hope you find this to be useful.
+                    </dd>
+                    <dt>How does the tool work?</dt>
+                    <dd>
+                        The tool is relatively simple to use. A user can choose two specialties: their specialty of choice and their partner's specialty of choice. The tool then calculates the distance between every possible combination of programs between the two specialties. Any combination that is less than the maximum mileage will be displayed. 
+                        <br>
+                        <ol>
+                            <li>Choose first specialty.</li>
+                            <li>Choose second specialty.</li>
+                            <li>Input a maximum distance in miles.</li>
+                            <li>Submit.</li>
+                        </ol>
+                    </dd>
+                    <dt>How are locations and distances measured?</dt>
+                    <dd>
+                        Distances are calculated using the Haversine Formula based on the zipcode
+                        provided by each program in the ACGME Registry. As such, distances are essentially straight-
+                        line distances between two points and do not reflect travel distance by road. Zipcodes were used over exact address since many programs in the same hospital system have slightly differing addresses. Thus, zipcodes provide more consistency. The data was collected using the ACGME Data Retrieval System for the most recent dataset (2017-2018) and includes only ACGME registered programs.
+                    </dd>
+                    <dt>More Tools</dt>
+                    <dd>
+                        I highly recommend a web tool developed by another medical student at www.mactiontools.com. Once you have identified programs that meet your specifications, use Mactiontools to create a rank list based on your preferences. 
+                    </dd>
+                    <dt>Contact?</dt>
+                    <dd>austinjeells@gmail.com</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <!--Display All Selected Programs modal-->
+    <div class="modal fade" id="allProgramsModal">
+    <div class="modal-dialog modal-xl">
+        <div id="allProgramsModal-content" class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">All Programs List Results</h4>
+                <button type="button" class="btn btn-info" style="position: absolute; right: 4%;" href="#" onclick="javascript:xport.toCSV('allPrograms1Table', 'Match List Results')">
+                  Download
+                </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="card mb-4">
+                        <h5 class="card-header" id="allProgramsHeader1">Specialty 1</h5>
+                        <div class="card-body text-center" style="padding-top: 0%; padding-right: 0%; padding-left: 0%">
+                            <div id="allPrograms1Container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="card mb-4">
+                        <h5 class="card-header" id="allProgramsHeader2">Specialty 2</h5>
+                        <div class="card-body text-center" style="padding-top: 0%; padding-right: 0%; padding-left: 0%">
+                            <div id="allPrograms2Container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+                <div id="allProgramsContainer" class="container-fluid mb-4" style="padding-right: 5%; padding-left: 5%">
+                  <!--<div id="map"></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
     <div id = "myModal" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-sm">
             <div class="modal-content" style="width: 48px">
@@ -90,40 +196,97 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>
       $(document).ready(function(){
-       load_json_data('Specialty');
+       load_json_data();
 
-       function load_json_data(id, parent_id){
-        var html_code = '';
-        $.getJSON('JSONarr.json', function(data){
+        function load_json_data(){
+          var html_code = '';
 
-         html_code += '<option value="">Select Specialty</option>';
-         $.each(data, function(key, value){
-          if(id == 'Specialty'){
-           if(value.parent_id == '0'){
-            html_code += '<option value="'+value.id+'">'+value.name+'</option>';
-           }
-          }
-          else{
-           if(value.parent_id == parent_id){
-            html_code += '<option value="'+value.id+'">'+value.name+'</option>';
-           }
-          }
-         });
-         //$('#'+id).html(html_code);
-         $('#Specialty1').html(html_code);
-         $('#Specialty2').html(html_code);
-        });
-       }
+          $.getJSON('specialtiesArr.json', function(data){
+            html_code += '<option value="">Select Specialty</option>';
+            $.each(data, function(key, value){
+              html_code += '<option value="'+value.name+'">'+value.name+'</option>';
+            });
+
+            $('#Specialty1').html(html_code);
+            $('#Specialty2').html(html_code);
+          });
+        }
       });
 
+      //Function to display all programs of selected specialties
+      function displayAllPrograms(e){
+        //e.preventDefault();
+        var submittedData = {
+          vSpec1DropValue: document.getElementById("Specialty1").value,
+          vSpec2DropValue: document.getElementById("Specialty2").value 
+          //vSpec2DropValue: e.target['Specialty2'].value 
+        }
+        //console.log(submittedData);
+
+        $.ajax({
+          url: 'ACGMEDatasetJSON.json',
+          dataType: 'json',
+          type:'get',
+          cache: false,
+          success: function(data){
+            spec1json = data.filter(function(key,value){
+              return key.SpecialtyName == submittedData.vSpec1DropValue;
+            });
+            spec2json = data.filter(function(key,value){
+              return key.SpecialtyName == submittedData.vSpec2DropValue;
+            });
+
+
+            if (document.getElementById("allPrograms1Table")){document.getElementById("allPrograms1Table").remove()}
+            //else{console.log('didnt pass remove test')}
+            //console.log(spec1json,spec2json);
+            var tableData1 = '<table class = "table table-striped table-hover table-sm Xtable-bordered" id = "allPrograms1Table"><thead><tr><th>Program Name</th><th>City</th><th>State</th></tr></thead><tbody>';
+            $.each(spec1json, function(key,value){
+              tableData1 += '<tr>';
+              tableData1 += '<td>'+value.ProgramName+'</td>';
+              tableData1 += '<td>'+value.ProgramCity+'</td>';
+              tableData1 += '<td>'+value.ProgramStateNameAbb+'</td>';
+              tableData1 += '</tr>';
+            });
+            tableData1 += '</tbody></table>';
+            //console.log(tableData1);
+
+
+            if (document.getElementById("allPrograms2Table")){document.getElementById("allPrograms2Table").remove()}
+            //else{console.log('didnt pass remove test')}
+            //console.log(spec1json,spec2json);
+            var tableData2 = '<table class = "table table-striped table-hover table-sm Xtable-bordered" id = "allPrograms2Table"><thead><tr><th>Program Name</th><th>City</th><th>State</th></tr></thead><tbody>';
+            $.each(spec2json, function(key,value){
+              tableData2 += '<tr>';
+              tableData2 += '<td>'+value.ProgramName+'</td>';
+              tableData2 += '<td>'+value.ProgramCity+'</td>';
+              tableData2 += '<td>'+value.ProgramStateNameAbb+'</td>';
+              tableData2 += '</tr>';
+            });
+            tableData2 += '</tbody></table>';
+
+            allProgramsHeader1.innerText = spec1json[1].SpecialtyName;
+            allProgramsHeader2.innerText = spec2json[1].SpecialtyName;
+            $('#allPrograms1Container').append(tableData1);
+            $('#allPrograms2Container').append(tableData2);
+          }
+        })
+
+        $("#allProgramsModal").modal('show');
+      }
+
+
+
+
+      //function to create match results
       function evaluateData(e) {
         e.preventDefault();
-        $(".modal").modal('show');
-        setTimeout(function () {$('.modal').modal('hide')}, 500);
+        $("#myModal").modal('show');
+        setTimeout(function () {$('#myModal').modal('hide')}, 500);
         
         var submittedData = {
           vSpec1DropValue: e.target['Specialty1'].value, 
@@ -136,16 +299,16 @@
 
       function loadJSONarray(submittedData){
         $.ajax({
-          url: 'JSONarr.json',
+          url: 'ACGMEDatasetJSON.json',
           dataType: 'json',
           type:'get',
           cache: false,
           success: function(data){
             spec1json = data.filter(function(key,value){
-              return key.parent_id == submittedData.vSpec1DropValue;
+              return key.SpecialtyName == submittedData.vSpec1DropValue;
             });
             spec2json = data.filter(function(key,value){
-              return key.parent_id == submittedData.vSpec2DropValue;
+              return key.SpecialtyName == submittedData.vSpec2DropValue;
             });
             processData(spec1json, spec2json, submittedData);
             //console.log(submittedData.vSpec1DropValue)
@@ -154,8 +317,8 @@
       }
      
     function processData(spec1json, spec2json, submittedData){
-      console.log(spec1json);
-      console.log(spec2json);
+      //console.log(spec1json);
+      //console.log(spec2json);
       var distCalc = ''
       var filteredCombinedJSON = [];
       $.each(spec1json, function(i, value){
@@ -171,12 +334,14 @@
 
           if(distCalc <= submittedData.vMaxDist){
             filteredCombinedJSON.push({
-              "Name1": spec1json[i].name,
-              "Name2": spec2json[j].name,
-              "Specialty1": spec1json[i].specialty,
-              "Specialty2": spec2json[j].specialty,
-              "Location1": spec1json[i].location,
-              "Location2": spec2json[j].location,
+              "Name1": spec1json[i].ProgramName,
+              "Name2": spec2json[j].ProgramName,
+              "Specialty1": spec1json[i].SpecialtyName,
+              "Specialty2": spec2json[j].SpecialtyName,
+              "City1": spec1json[i].ProgramCity,
+              "State1": spec1json[i].ProgramStateNameAbb,
+              "City2": spec2json[j].ProgramCity,
+              "State2": spec2json[j].ProgramStateNameAbb,
               "Latitude1": spec1lat, 
               "Latitude2": spec2lat,
               "Longitude1": spec1long,
@@ -186,7 +351,7 @@
           }
         });
       });
-      console.log(filteredCombinedJSON)
+      //console.log(filteredCombinedJSON)
       sendDataToTable(filteredCombinedJSON);
     }
         
@@ -202,14 +367,16 @@
       if (document.getElementById("resultsTable_wrapper")){document.getElementById("resultsTable_wrapper").remove()}
       //else{console.log('didnt pass remove test')}
 
-      var tableData = '<table class = "table table-striped table-hover table-sm table-bordered" id = "resultsTable"><thead><tr><th>Name</th><th>Name</th><th>Name</th><th>Name</th><th>Name</th></tr></thead><tbody>';
+      var tableData = '<table class = "table table-striped table-hover table-sm table-bordered" id = "resultsTable"><thead><tr><th>Name</th><th>Name</th><th>Name</th><th>Name</th><th>Name</th><th>Name</th><th>Name</th></tr></thead><tbody>';
       $.each(filteredCombinedJSON, function(key,value){
         tableData += '<tr>';
         tableData += '<td>'+value.Name1+'</td>';
-        tableData += '<td>'+value.Location1+'</td>';
+        tableData += '<td>'+value.City1+'</td>';
+        tableData += '<td>'+value.State1+'</td>';
         tableData += '<td>'+value.Distance+'</td>';
         tableData += '<td>'+value.Name2+'</td>';
-        tableData += '<td>'+value.Location2+'</td>';
+        tableData += '<td>'+value.City2+'</td>';
+        tableData += '<td>'+value.State2+'</td>';
         tableData += '</tr>';
       });
       tableData += '</tbody></table>';
@@ -217,9 +384,9 @@
 
       $('#resultsContainer').append(tableData);
       $('#resultsTable').DataTable({
-        columns: [{ title: filteredCombinedJSON[1].Specialty1},{ title: "Location"},{ title: "Distance" },{ title: filteredCombinedJSON[1].Specialty2},{ title: "Location" }],
+        columns: [{ title: filteredCombinedJSON[1].Specialty1},{ title: "City"},{ title: "State"},{ title: "Distance" },{ title: filteredCombinedJSON[1].Specialty2},{ title: "City" },{ title: "State"}],
           //paging: false,
-          "order": [ 2, 'asc' ],
+          "order": [ 3, 'asc' ],
           "lengthMenu": [ [-1, 25, 50, 100], ["All", 25, 50, 100] ]
       }); 
     };
@@ -393,8 +560,52 @@
         //   "parent_id": 1
         //   }
         // ]  
+
+        //In the future this code can be used as a template to create two nested dependent dropdown menus
+        // $(document).ready(function(){
+        //  load_json_data('Specialty');
+
+        //  function load_json_data(id, parent_id){
+        //   var html_code = '';
+        //   $.getJSON('JSONarr.json', function(data){
+
+        //    html_code += '<option value="">Select Specialty</option>';
+        //    $.each(data, function(key, value){
+        //     if(id == 'Specialty'){
+        //      if(value.parent_id == '0'){
+        //       html_code += '<option value="'+value.id+'">'+value.name+'</option>';
+        //      }
+        //     }
+        //     else{
+        //      if(value.parent_id == parent_id){
+        //       html_code += '<option value="'+value.id+'">'+value.name+'</option>';
+        //      }
+        //     }
+        //    });
+        //    //$('#'+id).html(html_code);
+        //    $('#Specialty1').html(html_code);
+        //    $('#Specialty2').html(html_code);
+        //   });
+        //  }
+        // });
+
+
+
     </script>
     <script>
+    /*  var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      } */
+    </script>
+    <script>
+      document.getElementById('helpNav').addEventListener('click', function () {
+        $('#helpModal').modal('show');
+      });
+
      /*function modal(){
            $('.modal').modal('show');
            setTimeout(function () {
@@ -406,6 +617,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>-->
   </body>
 </html>
 

@@ -1,0 +1,626 @@
+[
+{
+"id": 1,
+"name": "Allergy and Immunology"
+},
+{
+"id": 2,
+"name": "Anesthesiology"
+},
+{
+"id": 3,
+"name": "Child Neurology"
+},
+{
+"id": 4,
+"name": "Colon and Rectal Surgery"
+},
+{
+"id": 5,
+"name": "Dermatology"
+},
+{
+"id": 6,
+"name": "Emergency Medicine"
+},
+{
+"id": 7,
+"name": "Family Medicine"
+},
+{
+"id": 8,
+"name": "Internal Medicine"
+},
+{
+"id": 9,
+"name": "Internal Medicine/Pediatrics"
+},
+{
+"id": 11,
+"name": "Medical Genetics and Genomics"
+},
+{
+"id": 12,
+"name": "Neurological Surgery"
+},
+{
+"id": 13,
+"name": "Neurology"
+},
+{
+"id": 14,
+"name": "Nuclear Medicine"
+},
+{
+"id": 15,
+"name": "Obstetrics and Gynecology"
+},
+{
+"id": 16,
+"name": "Ophthalmology"
+},
+{
+"id": 17,
+"name": "Orthopaedic Surgery"
+},
+{
+"id": 18,
+"name": "Osteopathic Neuromusculoskeletal Medicine"
+},
+{
+"id": 19,
+"name": "Otolaryngology"
+},
+{
+"id": 20,
+"name": "Pathology-Anatomic and Clinical"
+},
+{
+"id": 21,
+"name": "Pediatrics"
+},
+{
+"id": 22,
+"name": "Physical Medicine and Rehabilitation"
+},
+{
+"id": 23,
+"name": "Plastic Surgery"
+},
+{
+"id": 24,
+"name": "Plastic Surgery - Integrated"
+},
+{
+"id": 25,
+"name": "Preventive Medicine"
+},
+{
+"id": 26,
+"name": "Psychiatry"
+},
+{
+"id": 27,
+"name": "Radiation Oncology"
+},
+{
+"id": 28,
+"name": "Radiology, Diagnostic"
+},
+{
+"id": 10,
+"name": "Radiology, Interventional - Integrated"
+},
+{
+"id": 29,
+"name": "Surgery, General"
+},
+{
+"id": 30,
+"name": "Thoracic Surgery"
+},
+{
+"id": 31,
+"name": "Thoracic Surgery - Integrated"
+},
+{
+"id": 32,
+"name": "Transitional Year"
+},
+{
+"id": 33,
+"name": "Urology"
+},
+{
+"id": 34,
+"name": "Vascular Surgery - Integrated"
+},
+{
+"id": 1000,
+"name": ""
+},
+{
+"id": 35,
+"name": "---Fellowships---"
+},
+{
+"id": 36,
+"name": "Abdominal radiology"
+},
+{
+"id": 37,
+"name": "Addiction psychiatry"
+},
+{
+"id": 38,
+"name": "Adolescent medicine"
+},
+{
+"id": 39,
+"name": "Adult cardiothoracic anesthesiology"
+},
+{
+"id": 40,
+"name": "Adult congenital heart disease"
+},
+{
+"id": 41,
+"name": "Adult reconstructive orthopaedics"
+},
+{
+"id": 42,
+"name": "Advanced heart failure and transplant cardiology"
+},
+{
+"id": 43,
+"name": "Blood banking/transfusion medicine"
+},
+{
+"id": 44,
+"name": "Brain injury medicine (Neurology)"
+},
+{
+"id": 45,
+"name": "Brain injury medicine (Physical medicine and rehabilitation)"
+},
+{
+"id": 46,
+"name": "Cardiovascular disease"
+},
+{
+"id": 47,
+"name": "Chemical pathology"
+},
+{
+"id": 48,
+"name": "Child abuse pediatrics"
+},
+{
+"id": 49,
+"name": "Child and adolescent psychiatry"
+},
+{
+"id": 50,
+"name": "Clinical cardiac electrophysiology"
+},
+{
+"id": 51,
+"name": "Clinical informatics (Anesthesiology)"
+},
+{
+"id": 52,
+"name": "Clinical informatics (Emergency medicine)"
+},
+{
+"id": 53,
+"name": "Clinical informatics (Family medicine)"
+},
+{
+"id": 54,
+"name": "Clinical informatics (Internal medicine)"
+},
+{
+"id": 55,
+"name": "Clinical informatics (Pathology)"
+},
+{
+"id": 56,
+"name": "Clinical informatics (Pediatrics)"
+},
+{
+"id": 57,
+"name": "Clinical neurophysiology"
+},
+{
+"id": 58,
+"name": "Complex general surgical oncology"
+},
+{
+"id": 59,
+"name": "Congenital cardiac surgery"
+},
+{
+"id": 60,
+"name": "Consultation-liaison psychiatry"
+},
+{
+"id": 61,
+"name": "Craniofacial surgery"
+},
+{
+"id": 62,
+"name": "Critical care medicine (Anesthesiology)"
+},
+{
+"id": 63,
+"name": "Critical care medicine (Internal medicine)"
+},
+{
+"id": 64,
+"name": "Cytopathology"
+},
+{
+"id": 65,
+"name": "Dermatopathology (multidisciplinary)"
+},
+{
+"id": 66,
+"name": "Developmental-behavioral pediatrics"
+},
+{
+"id": 67,
+"name": "Emergency medical services"
+},
+{
+"id": 68,
+"name": "Endocrinology, diabetes, and metabolism"
+},
+{
+"id": 69,
+"name": "Endovascular surgical neuroradiology (Neurological surgery)"
+},
+{
+"id": 70,
+"name": "Endovascular surgical neuroradiology (Neurology)"
+},
+{
+"id": 71,
+"name": "Endovascular surgical neuroradiology (Radiology)"
+},
+{
+"id": 72,
+"name": "Epilepsy"
+},
+{
+"id": 73,
+"name": "Female pelvic medicine and reconstructive surgery (OBGYN)"
+},
+{
+"id": 74,
+"name": "Female pelvic medicine and reconstructive surgery (Urology)"
+},
+{
+"id": 75,
+"name": "Foot and ankle orthopaedics"
+},
+{
+"id": 76,
+"name": "Forensic pathology"
+},
+{
+"id": 77,
+"name": "Forensic psychiatry"
+},
+{
+"id": 78,
+"name": "Gastroenterology"
+},
+{
+"id": 79,
+"name": "Geriatric medicine (Family medicine)"
+},
+{
+"id": 80,
+"name": "Geriatric medicine (Internal medicine)"
+},
+{
+"id": 81,
+"name": "Geriatric psychiatry"
+},
+{
+"id": 82,
+"name": "Gynecologic oncology"
+},
+{
+"id": 83,
+"name": "Hand surgery (Orthopaedic surgery)"
+},
+{
+"id": 84,
+"name": "Hand surgery (Plastic surgery)"
+},
+{
+"id": 85,
+"name": "Hand surgery (Surgery)"
+},
+{
+"id": 86,
+"name": "Hematology"
+},
+{
+"id": 87,
+"name": "Hematology and medical oncology"
+},
+{
+"id": 88,
+"name": "Hematopathology"
+},
+{
+"id": 89,
+"name": "Hospice and palliative medicine (multidisciplinary)"
+},
+{
+"id": 90,
+"name": "Infectious disease"
+},
+{
+"id": 91,
+"name": "Interventional cardiology"
+},
+{
+"id": 92,
+"name": "Maternal-fetal medicine"
+},
+{
+"id": 93,
+"name": "Medical biochemical genetics"
+},
+{
+"id": 94,
+"name": "Medical microbiology"
+},
+{
+"id": 95,
+"name": "Medical oncology"
+},
+{
+"id": 96,
+"name": "Medical toxicology (Emergency medicine)"
+},
+{
+"id": 97,
+"name": "Medical toxicology (Preventive medicine)"
+},
+{
+"id": 98,
+"name": "Micrographic surgery and dermatologic oncology"
+},
+{
+"id": 99,
+"name": "Molecular genetic pathology (multidisciplinary)"
+},
+{
+"id": 100,
+"name": "Musculoskeletal oncology"
+},
+{
+"id": 101,
+"name": "Musculoskeletal radiology"
+},
+{
+"id": 102,
+"name": "Neonatal-perinatal medicine"
+},
+{
+"id": 103,
+"name": "Nephrology"
+},
+{
+"id": 104,
+"name": "Neurodevelopmental disabilities"
+},
+{
+"id": 105,
+"name": "Neuromuscular medicine (Neurology)"
+},
+{
+"id": 106,
+"name": "Neuromuscular medicine (Physical medicine and rehabilitation)"
+},
+{
+"id": 107,
+"name": "Neuropathology"
+},
+{
+"id": 108,
+"name": "Neuroradiology"
+},
+{
+"id": 109,
+"name": "Neurotology"
+},
+{
+"id": 110,
+"name": "Nuclear radiology"
+},
+{
+"id": 111,
+"name": "Obstetric anesthesiology"
+},
+{
+"id": 112,
+"name": "Ophthalmic plastic and reconstructive surgery"
+},
+{
+"id": 113,
+"name": "Orthopaedic sports medicine"
+},
+{
+"id": 114,
+"name": "Orthopaedic surgery of the spine"
+},
+{
+"id": 115,
+"name": "Orthopaedic trauma"
+},
+{
+"id": 116,
+"name": "Pain medicine (multidisciplinary)"
+},
+{
+"id": 117,
+"name": "Pediatric anesthesiology"
+},
+{
+"id": 118,
+"name": "Pediatric cardiology"
+},
+{
+"id": 119,
+"name": "Pediatric critical care medicine"
+},
+{
+"id": 120,
+"name": "Pediatric emergency medicine (Emergency medicine)"
+},
+{
+"id": 121,
+"name": "Pediatric emergency medicine (Pediatrics)"
+},
+{
+"id": 122,
+"name": "Pediatric endocrinology"
+},
+{
+"id": 123,
+"name": "Pediatric gastroenterology"
+},
+{
+"id": 124,
+"name": "Pediatric hematology/oncology"
+},
+{
+"id": 125,
+"name": "Pediatric infectious diseases"
+},
+{
+"id": 126,
+"name": "Pediatric nephrology"
+},
+{
+"id": 127,
+"name": "Pediatric orthopaedics"
+},
+{
+"id": 128,
+"name": "Pediatric otolaryngology"
+},
+{
+"id": 129,
+"name": "Pediatric pathology"
+},
+{
+"id": 130,
+"name": "Pediatric pulmonology"
+},
+{
+"id": 131,
+"name": "Pediatric radiology"
+},
+{
+"id": 132,
+"name": "Pediatric rehabilitation"
+},
+{
+"id": 133,
+"name": "Pediatric rheumatology"
+},
+{
+"id": 134,
+"name": "Pediatric sports medicine"
+},
+{
+"id": 135,
+"name": "Pediatric surgery"
+},
+{
+"id": 136,
+"name": "Pediatric transplant hepatology"
+},
+{
+"id": 137,
+"name": "Pediatric urology"
+},
+{
+"id": 138,
+"name": "Pulmonary disease"
+},
+{
+"id": 139,
+"name": "Pulmonary disease and critical care medicine"
+},
+{
+"id": 140,
+"name": "Regional anesthesiology and acute pain medicine"
+},
+{
+"id": 141,
+"name": "Reproductive endocrinology and infertility"
+},
+{
+"id": 142,
+"name": "Rheumatology"
+},
+{
+"id": 143,
+"name": "Selective pathology"
+},
+{
+"id": 144,
+"name": "Sleep medicine (multidisciplinary)"
+},
+{
+"id": 145,
+"name": "Spinal cord injury medicine"
+},
+{
+"id": 146,
+"name": "Sports medicine (Emergency medicine)"
+},
+{
+"id": 147,
+"name": "Sports medicine (Family medicine)"
+},
+{
+"id": 148,
+"name": "Sports medicine (Physical medicine and rehabilitation)"
+},
+{
+"id": 149,
+"name": "Surgical critical care"
+},
+{
+"id": 150,
+"name": "Transitional Year"
+},
+{
+"id": 151,
+"name": "Transplant hepatology"
+},
+{
+"id": 152,
+"name": "Undersea and hyperbaric medicine (Emergency medicine)"
+},
+{
+"id": 153,
+"name": "Undersea and hyperbaric medicine (Preventive medicine)"
+},
+{
+"id": 154,
+"name": "Vascular and interventional radiology"
+},
+{
+"id": 155,
+"name": "Vascular neurology"
+}
+]
