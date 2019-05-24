@@ -1,638 +1,231 @@
 <!DOCTYPE html>
-<html>
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="">
-      <meta name="author" content="">
+<html lang="en">
 
-      <title>Couples Match Tool</title>
+<head>
 
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-  </head>
-  <style>
-      /*#map {
-        height: 100%;
-      }*/
-      .bd-example-modal-lg .modal-dialog{
-        display: table;
-        position: relative;
-        margin: 0 auto;
-        top: calc(33% - 24px);
-      }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-      .bd-example-modal-lg .modal-dialog .modal-content{
-        background-color: transparent;
-        border: none;
-      }
+  <title>Residency Match Tools</title>
 
-      .modal-title {
-        display: inline-block;
-      }
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-      .modal-xl {
-        width: 95%;
-        max-width:1500px;
-      } 
-  </style>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-        <a class="navbar-brand" href="#">Match List Tool</a>
-        <span class="navbar-text">Data retrieved ACGME Sept 2018</span>
-        <button class="navbar-toggler bg-navy" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <button type="button "class="btn btn-info" onclick="location.reload()">Home</button>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-info"href="#" id="helpNav">Help</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="btn btn-info"onclick="javascript:xport.toCSV('resultsTable', 'Match List Results')"  href="#">Export to Excel</button>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    
-    <div class="jumbotron" style="padding-top: 20px; padding-bottom: 10px">
-        <h1 class="display-4">Couples Match Calculator</h1>
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/grayscale.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Residency Match Tools</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
+          </li>
+        </ul>
+      </div>
     </div>
-       
-    <div class="container-fluid"style="padding-right: 5%; padding-left: 5%">   
-      <form onsubmit="evaluateData(event)">
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">The Match</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">Simple tools designed to make the residency match easy.</h2>
+        <a href="couplesmatch.html" class="btn btn-primary js-scroll-trigger">Couples Match</a>
+        <a href="#about" class="btn btn-primary js-scroll-trigger">Rank List</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <!--
+  <section id="about" class="about-section text-center">
+    <div class="container">
       <div class="row">
-      <div class="col-sm-12 col-md-6">
-          <div class="card mb-4">
-              <h5 class="card-header">Step 1: Select Specialties</h5>
-              <div class="card-body text-center">
-                  <select class="custom-select"type="text" " id="Specialty1" required/>
-                    <option value="">Select Specialty</option>
-                  </select>
-                  <select class="custom-select"type="text" id="Specialty2" style="margin-top: 20px" required/>
-                    <option value="">Select Specialty</option>
-                  </select>
-              </div>
-          </div>
-      </div>
-      <div class="col-sm-12 col-md-6">
-          <div class="card mb-4">
-              <h5 class="card-header">Step 2: Select Maximum Distance</h5>
-              <div class="card-body text-center">
-                  <div><input class="form-control" type="number" name="MaxDist" placeholder="Max Distance (Miles)" max= "6000" min="0" required></div>
-              </div>
-              <div class="card-body text-center" style="padding-top: 0%">
-                      <button type="button" class="btn btn-outline-info"href="#" id="helpNav" onclick="displayAllPrograms(event)">View All Programs from Selected Specialties</button>
-              </div>
-          </div>
-      </div>
-      <div class="container h-100">
-          <div class="row h-100 justify-content-center align-items-center">
-             <input id="submitBtn" class="btn btn-outline-info btn-md mb-4" type="submit" value="Submit"/>
-          </div>
-      </div>
-    </div>
-    </form>
-    </div>
-    <div id="resultsContainer" class="container-fluid mb-4" style="padding-right: 5%; padding-left: 5%">
-      <!--<div id="map"></div>-->
-    </div>  
-    
-    <!--help modal-->
-    <div class="modal fade" id="helpModal">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Help for Couples Match Tool</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <dl>
-                    <dt>About</dt>
-                    <dd>
-                        Matching into a residency is stressful and couples matching is even more stressful. When looking at programs, my wife and I wanted to be in the same city but had trouble figuring out which are close to each other. I created this program to calculate the distance between programs, then filter them by a maximum distance. I hope you find this to be useful.
-                    </dd>
-                    <dt>How does the tool work?</dt>
-                    <dd>
-                        The tool is relatively simple to use. A user can choose two specialties: their specialty of choice and their partner's specialty of choice. The tool then calculates the distance between every possible combination of programs between the two specialties. Any combination that is less than the maximum mileage will be displayed. 
-                        <br>
-                        <ol>
-                            <li>Choose first specialty.</li>
-                            <li>Choose second specialty.</li>
-                            <li>Input a maximum distance in miles.</li>
-                            <li>Submit.</li>
-                        </ol>
-                    </dd>
-                    <dt>How are locations and distances measured?</dt>
-                    <dd>
-                        Distances are calculated using the Haversine Formula based on the zipcode
-                        provided by each program in the ACGME Registry. As such, distances are essentially straight-
-                        line distances between two points and do not reflect travel distance by road. Zipcodes were used over exact address since many programs in the same hospital system have slightly differing addresses. Thus, zipcodes provide more consistency. The data was collected using the ACGME Data Retrieval System for the most recent dataset (2017-2018) and includes only ACGME registered programs.
-                    </dd>
-                    <dt>More Tools</dt>
-                    <dd>
-                        I highly recommend a web tool developed by another medical student at www.mactiontools.com. Once you have identified programs that meet your specifications, use Mactiontools to create a rank list based on your preferences. 
-                    </dd>
-                    <dt>Contact?</dt>
-                    <dd>austinjeells@gmail.com</dd>
-                </dl>
-            </div>
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
+          <p class="text-white-50">Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
+            <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
         </div>
+      </div>
+      <img src="img/ipad.png" class="img-fluid" alt="">
     </div>
-    </div>
-    
-    <!--Display All Selected Programs modal-->
-    <div class="modal fade" id="allProgramsModal">
-    <div class="modal-dialog modal-xl">
-        <div id="allProgramsModal-content" class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">All Programs List Results</h4>
-                <button type="button" class="btn btn-info" style="position: absolute; right: 4%;" href="#" onclick="javascript:xport.toCSV('allPrograms1Table', 'All Programs Results')">
-                  Download
-                </button>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <div class="card mb-4">
-                        <h5 class="card-header" id="allProgramsHeader1">Specialty 1</h5>
-                        <div class="card-body text-center" style="padding-top: 0%; padding-right: 0%; padding-left: 0%">
-                            <div id="allPrograms1Container">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="card mb-4">
-                        <h5 class="card-header" id="allProgramsHeader2">Specialty 2</h5>
-                        <div class="card-body text-center" style="padding-top: 0%; padding-right: 0%; padding-left: 0%">
-                            <div id="allPrograms2Container">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  </section>
+  -->
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section bg-light">
+    <div class="container">
+
+      <!-- Featured Project Row -->
+      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+        <div class="col-xl-8 col-lg-7">
+          <img class="img-fluid mb-3 mb-lg-0" src="img/bg-masthead.jpg" alt="">
+        </div>
+        <div class="col-xl-4 col-lg-5">
+          <div class="featured-text text-center text-lg-left">
+            <h4>Shoreline</h4>
+            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project One Row -->
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="img/demo-image-01.jpg" alt="">
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">Misty</h4>
+                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                <hr class="d-none d-lg-block mb-0 ml-0">
               </div>
-                <div id="allProgramsContainer" class="container-fluid mb-4" style="padding-right: 5%; padding-left: 5%">
-                  <!--<div id="map"></div>-->
-                </div>
             </div>
+          </div>
         </div>
-    </div>
-    </div>
+      </div>
 
-    <div id = "myModal" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content" style="width: 48px">
-                <span class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></span>
+      <!-- Project Two Row -->
+      <div class="row justify-content-center no-gutters">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="img/demo-image-02.jpg" alt="">
+        </div>
+        <div class="col-lg-6 order-lg-first">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-right">
+                <h4 class="text-white">Mountains</h4>
+                <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                <hr class="d-none d-lg-block mb-0 mr-0">
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+
     </div>
+  </section>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script>
-      $(document).ready(function(){
-       load_json_data();
+  <!-- Signup Section -->
+  <section id="signup" class="signup-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
 
-        function load_json_data(){
-          var html_code = '';
+          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+          <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
 
-          $.getJSON('specialtiesArr.json', function(data){
-            html_code += '<option value="">Select Specialty</option>';
-            $.each(data, function(key, value){
-              html_code += '<option value="'+value.name+'">'+value.name+'</option>';
-            });
+          <form class="form-inline d-flex">
+            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
+            <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
+          </form>
 
-            $('#Specialty1').html(html_code);
-            $('#Specialty2').html(html_code);
-          });
-        }
-      });
+        </div>
+      </div>
+    </div>
+  </section>
 
-      //Function to display all programs of selected specialties
-      function displayAllPrograms(e){
-        //e.preventDefault();
-        var submittedData = {
-          vSpec1DropValue: document.getElementById("Specialty1").value,
-          vSpec2DropValue: document.getElementById("Specialty2").value 
-          //vSpec2DropValue: e.target['Specialty2'].value 
-        }
-        //console.log(submittedData);
+  <!-- Contact Section -->
+  <section class="contact-section bg-black">
+    <div class="container">
 
-        $.ajax({
-          url: 'ACGMEDatasetJSON.json',
-          dataType: 'json',
-          type:'get',
-          cache: false,
-          success: function(data){
-            spec1json = data.filter(function(key,value){
-              return key.SpecialtyName == submittedData.vSpec1DropValue;
-            });
-            spec2json = data.filter(function(key,value){
-              return key.SpecialtyName == submittedData.vSpec2DropValue;
-            });
+      <div class="row">
 
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Address</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+            </div>
+          </div>
+        </div>
 
-            if (document.getElementById("allPrograms1Table")){document.getElementById("allPrograms1Table").remove()}
-            //else{console.log('didnt pass remove test')}
-            //console.log(spec1json,spec2json);
-            var tableData1 = '<table class = "table table-striped table-hover table-sm Xtable-bordered" id = "allPrograms1Table"><thead><tr><th>Program Name</th><th>City</th><th>State</th></tr></thead><tbody>';
-            $.each(spec1json, function(key,value){
-              tableData1 += '<tr>';
-              tableData1 += '<td>'+value.ProgramName+'</td>';
-              tableData1 += '<td>'+value.ProgramCity+'</td>';
-              tableData1 += '<td>'+value.ProgramStateNameAbb+'</td>';
-              tableData1 += '</tr>';
-            });
-            tableData1 += '</tbody></table>';
-            //console.log(tableData1);
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Email</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">
+                <a href="#">hello@yourdomain.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-mobile-alt text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Phone</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">+1 (555) 902-8832</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            if (document.getElementById("allPrograms2Table")){document.getElementById("allPrograms2Table").remove()}
-            //else{console.log('didnt pass remove test')}
-            //console.log(spec1json,spec2json);
-            var tableData2 = '<table class = "table table-striped table-hover table-sm Xtable-bordered" id = "allPrograms2Table"><thead><tr><th>Program Name</th><th>City</th><th>State</th></tr></thead><tbody>';
-            $.each(spec2json, function(key,value){
-              tableData2 += '<tr>';
-              tableData2 += '<td>'+value.ProgramName+'</td>';
-              tableData2 += '<td>'+value.ProgramCity+'</td>';
-              tableData2 += '<td>'+value.ProgramStateNameAbb+'</td>';
-              tableData2 += '</tr>';
-            });
-            tableData2 += '</tbody></table>';
+      <div class="social d-flex justify-content-center">
+        <a href="#" class="mx-2">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
 
-            allProgramsHeader1.innerText = spec1json[1].SpecialtyName;
-            allProgramsHeader2.innerText = spec2json[1].SpecialtyName;
-            $('#allPrograms1Container').append(tableData1);
-            $('#allPrograms2Container').append(tableData2);
-          }
-        })
+    </div>
+  </section>
 
-        $("#allProgramsModal").modal('show');
-      }
+  <!-- Footer -->
+  <footer class="bg-black small text-center text-white-50">
+    <div class="container">
+      Copyright &copy; Your Website 2019
+    </div>
+  </footer>
 
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+  <!-- Custom scripts for this template -->
+  <script src="js/grayscale.min.js"></script>
 
-      //function to create match results
-      function evaluateData(e) {
-        e.preventDefault();
-        $("#myModal").modal('show');
-        setTimeout(function () {$('#myModal').modal('hide')}, 500);
-        
-        var submittedData = {
-          vSpec1DropValue: e.target['Specialty1'].value, 
-          vSpec2DropValue: e.target['Specialty2'].value, 
-          vMaxDist: e.target['MaxDist'].value
-        }
+</body>
 
-        loadJSONarray(submittedData);
-      }
-
-      function loadJSONarray(submittedData){
-        $.ajax({
-          url: 'ACGMEDatasetJSON.json',
-          dataType: 'json',
-          type:'get',
-          cache: false,
-          success: function(data){
-            spec1json = data.filter(function(key,value){
-              return key.SpecialtyName == submittedData.vSpec1DropValue;
-            });
-            spec2json = data.filter(function(key,value){
-              return key.SpecialtyName == submittedData.vSpec2DropValue;
-            });
-            processData(spec1json, spec2json, submittedData);
-            //console.log(submittedData.vSpec1DropValue)
-          }
-        })
-      }
-     
-    function processData(spec1json, spec2json, submittedData){
-      //console.log(spec1json);
-      //console.log(spec2json);
-      var distCalc = ''
-      var filteredCombinedJSON = [];
-      $.each(spec1json, function(i, value){
-        $.each(spec2json, function(j, value){
-          //enter code to cycle through both
-          spec1lat = spec1json[i].latitude;
-          spec1long = spec1json[i].longitude;
-          spec2lat = spec2json[j].latitude;
-          spec2long = spec2json[j].longitude;
-          
-          distCalc = Math.acos(Math.cos((90-spec2lat)*(Math.PI/180))*Math.cos((90-spec1lat)*(Math.PI/180))+Math.sin((90-spec2lat)*(Math.PI/180))*Math.sin((90-spec1lat)*(Math.PI/180))*Math.cos((spec2long-spec1long)*(Math.PI/180)))*6371;
-          distCalc = Math.round(distCalc * 10) / 10;
-
-          if(distCalc <= submittedData.vMaxDist){
-            filteredCombinedJSON.push({
-              "Name1": spec1json[i].ProgramName,
-              "Name2": spec2json[j].ProgramName,
-              "Specialty1": spec1json[i].SpecialtyName,
-              "Specialty2": spec2json[j].SpecialtyName,
-              "City1": spec1json[i].ProgramCity,
-              "State1": spec1json[i].ProgramStateNameAbb,
-              "City2": spec2json[j].ProgramCity,
-              "State2": spec2json[j].ProgramStateNameAbb,
-              "Latitude1": spec1lat, 
-              "Latitude2": spec2lat,
-              "Longitude1": spec1long,
-              "Longitude2": spec2long,
-              "Distance": distCalc
-            });
-          }
-        });
-      });
-      //console.log(filteredCombinedJSON)
-      sendDataToTable(filteredCombinedJSON);
-    }
-        
-    //function to create two unfiltered columns containing all programs in each specialty when the specialties are selected
-    function createHTMLtable(){
-
-    };
-
-
-    //function to display data
-    function sendDataToTable(filteredCombinedJSON){
-      //console.log(filteredCombinedJSON)  
-      if (document.getElementById("resultsTable_wrapper")){document.getElementById("resultsTable_wrapper").remove()}
-      //else{console.log('didnt pass remove test')}
-
-      var tableData = '<table class = "table table-striped table-hover table-sm table-bordered" id = "resultsTable"><thead><tr><th>Name</th><th>Name</th><th>Name</th><th>Name</th><th>Name</th><th>Name</th><th>Name</th></tr></thead><tbody>';
-      $.each(filteredCombinedJSON, function(key,value){
-        tableData += '<tr>';
-        tableData += '<td>'+value.Name1+'</td>';
-        tableData += '<td>'+value.City1+'</td>';
-        tableData += '<td>'+value.State1+'</td>';
-        tableData += '<td>'+value.Distance+'</td>';
-        tableData += '<td>'+value.Name2+'</td>';
-        tableData += '<td>'+value.City2+'</td>';
-        tableData += '<td>'+value.State2+'</td>';
-        tableData += '</tr>';
-      });
-      tableData += '</tbody></table>';
-      //console.log(tableData);
-
-      $('#resultsContainer').append(tableData);
-      var table = $('#resultsTable').DataTable({
-        columns: [{ title: filteredCombinedJSON[1].Specialty1}, {title: "City"}, { title: "State"}, { title: "Distance" }, { title: filteredCombinedJSON[1].Specialty2}, { title: "City" }, { title: "State"}],
-        paging: false,
-        lengthChange: false,
-        buttons: ['copy','excel','pdf','colvis'],
-        "order": [ 3, 'asc' ],
-        //"lengthMenu": [ [-1, 25, 50, 100], ["All", 25, 50, 100] ]
-      }); 
-      
-      table.buttons().container()
-          .appendTo('#resultsTable_wrapper .col-md-6:eq(0)');
-    };
-      
-      
-      //function to remove old table
-      Element.prototype.remove = function() {this.parentElement.removeChild(this)}
-      NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-          for(var i = this.length - 1; i >= 0; i--) {
-              if(this[i] && this[i].parentElement) {
-                  this[i].parentElement.removeChild(this[i]);
-              }
-          }
-      }      
-    </script>
-     <script>
-          //script to export to csv and xls
-            var xport = {
-          _fallbacktoCSV: true,  
-          toXLS: function(tableId, filename) {   
-            this._filename = (typeof filename == 'undefined') ? tableId : filename;
-            
-            //var ieVersion = this._getMsieVersion();
-            //Fallback to CSV for IE & Edge
-            if ((this._getMsieVersion() || this._isFirefox()) && this._fallbacktoCSV) {
-              return this.toCSV(tableId);
-            } else if (this._getMsieVersion() || this._isFirefox()) {
-              alert("Not supported browser");
-            }
-        
-            //Other Browser can download xls
-            var htmltable = document.getElementById(tableId);
-            var html = htmltable.outerHTML;
-        
-            this._downloadAnchor("data:application/vnd.ms-excel" + encodeURIComponent(html), 'xls'); 
-          },
-          toCSV: function(tableId, filename) {
-            this._filename = (typeof filename === 'undefined') ? tableId : filename;
-            // Generate our CSV string from out HTML Table
-            var csv = this._tableToCSV(document.getElementById(tableId));
-            // Create a CSV Blob
-            var blob = new Blob([csv], { type: "text/csv" });
-        
-            // Determine which approach to take for the download
-            if (navigator.msSaveOrOpenBlob) {
-              // Works for Internet Explorer and Microsoft Edge
-              navigator.msSaveOrOpenBlob(blob, this._filename + ".csv");
-            } else {      
-              this._downloadAnchor(URL.createObjectURL(blob), 'csv');      
-            }
-          },
-          _getMsieVersion: function() {
-            var ua = window.navigator.userAgent;
-
-            var msie = ua.indexOf("MSIE ");
-            if (msie > 0) {
-              // IE 10 or older => return version number
-                return parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)), 10);
-            }
-        
-            var trident = ua.indexOf("Trident/");
-            if (trident > 0) {
-              // IE 11 => return version number
-              var rv = ua.indexOf("rv:");
-              return parseInt(ua.substring(rv + 3, ua.indexOf(".", rv)), 10);
-            }
-        
-            var edge = ua.indexOf("Edge/");
-            if (edge > 0) {
-              // Edge (IE 12+) => return version number
-              return parseInt(ua.substring(edge + 5, ua.indexOf(".", edge)), 10);
-            }
-
-            // other browser
-            return false;
-          },
-          _isFirefox: function(){
-            if (navigator.userAgent.indexOf("Firefox") > 0) {
-              return 1;
-            }
-    
-            return 0;
-          },
-          _downloadAnchor: function(content, ext) {
-              var anchor = document.createElement("a");
-              anchor.style = "display:none !important";
-              anchor.id = "downloadanchor";
-              document.body.appendChild(anchor);
-        
-              // If the [download] attribute is supported, try to use it
-              
-              if ("download" in anchor) {
-                anchor.download = this._filename + "." + ext;
-              }
-              anchor.href = content;
-              anchor.click();
-              anchor.remove();
-          },
-          _tableToCSV: function(table) {
-            // We'll be co-opting `slice` to create arrays
-            var slice = Array.prototype.slice;
-
-            return slice
-              .call(table.rows)
-              .map(function(row) {
-                return slice
-                  .call(row.cells)
-                  .map(function(cell) {
-                    return '"t"'.replace("t", cell.textContent);
-                  })
-                  .join(",");
-              })
-              .join("\r\n");
-          }
-        };  
-
-
-        // var JSONarr = [
-        //   {
-        //   "id": 1,
-        //   "name": "Allergy and Immunology",
-        //   "specialty": "-",
-        //   "location": "-",
-        //   "latitude": "-",
-        //   "longitude": "-",
-        //   "parent_id": 0
-        //   },
-        //   {
-        //   "id": 2,
-        //   "name": "Anesthesiology",
-        //   "specialty": "-",
-        //   "location": "-",
-        //   "latitude": "-",
-        //   "longitude": "-",
-        //   "parent_id": 0
-        //   },
-        //   {
-        //   "id": 3,
-        //   "name": "Child Neurology",
-        //   "specialty": "-",
-        //   "location": "-",
-        //   "latitude": "-",
-        //   "longitude": "-",
-        //   "parent_id": 0
-        //   },
-        //   {
-        //   "id": 37,
-        //   "name": "Albany Medical Center Program",
-        //   "specialty": "Allergy and Immunology",
-        //   "location": "Albany, NY 12203   ",
-        //   "latitude": 42.6823182,
-        //   "longitude": -73.8477874,
-        //   "parent_id": 1
-        //   },
-        //   {
-        //   "id": 38,
-        //   "name": "Baylor College of Medicine Program",
-        //   "specialty": "Allergy and Immunology",
-        //   "location": "Houston, TX 77030 ",
-        //   "latitude": 29.7050857,
-        //   "longitude": -95.40180869999999,
-        //   "parent_id": 1
-        //   },
-        //   {
-        //   "id": 39,
-        //   "name": "Boston University Medical Center Program",
-        //   "specialty": "Allergy and Immunology",
-        //   "location": "Boston, MA 02118 ",
-        //   "latitude": 42.3377967,
-        //   "longitude": -71.0705763,
-        //   "parent_id": 1
-        //   }
-        // ]  
-
-        //In the future this code can be used as a template to create two nested dependent dropdown menus
-        // $(document).ready(function(){
-        //  load_json_data('Specialty');
-
-        //  function load_json_data(id, parent_id){
-        //   var html_code = '';
-        //   $.getJSON('JSONarr.json', function(data){
-
-        //    html_code += '<option value="">Select Specialty</option>';
-        //    $.each(data, function(key, value){
-        //     if(id == 'Specialty'){
-        //      if(value.parent_id == '0'){
-        //       html_code += '<option value="'+value.id+'">'+value.name+'</option>';
-        //      }
-        //     }
-        //     else{
-        //      if(value.parent_id == parent_id){
-        //       html_code += '<option value="'+value.id+'">'+value.name+'</option>';
-        //      }
-        //     }
-        //    });
-        //    //$('#'+id).html(html_code);
-        //    $('#Specialty1').html(html_code);
-        //    $('#Specialty2').html(html_code);
-        //   });
-        //  }
-        // });
-
-
-
-    </script>
-    <script>
-    /*  var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      } */
-    </script>
-    <script>
-      document.getElementById('helpNav').addEventListener('click', function () {
-        $('#helpModal').modal('show');
-      });
-
-     /*function modal(){
-           $('.modal').modal('show');
-           setTimeout(function () {
-           $('.modal').modal('hide');
-           }, 8000);
-        }*/
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.print.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.colVis.min.js"></script>
-    <script type="text/javascript" src=""></script>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>-->
-  </body>
 </html>
-
-
