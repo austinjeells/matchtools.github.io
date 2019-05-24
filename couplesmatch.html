@@ -1,106 +1,193 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <html>
   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <meta name="description" content="">
-      <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-      <title>Couples Match Tool</title>
+    <title>Couples Match Tool</title>
 
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="  stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+
+    <!--
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+  
   </head>
+  
   <style>
-      /*#map {
-        height: 100%;
-      }*/
-      .bd-example-modal-lg .modal-dialog{
-        display: table;
-        position: relative;
-        margin: 0 auto;
-        top: calc(33% - 24px);
-      }
+    /*#map {
+      height: 100%;
+    }*/
+    .bd-example-modal-lg .modal-dialog{
+      display: table;
+      position: relative;
+      margin: 0 auto;
+      top: calc(33% - 24px);
+    }
 
-      .bd-example-modal-lg .modal-dialog .modal-content{
-        background-color: transparent;
-        border: none;
-      }
+    .bd-example-modal-lg .modal-dialog .modal-content{
+      background-color: transparent;
+      border: none;
+    }
 
-      .modal-title {
-        display: inline-block;
-      }
+    .modal-title {
+      display: inline-block;
+    }
 
-      .modal-xl {
-        width: 95%;
-        max-width:1500px;
-      } 
+    .modal-xl {
+      width: 95%;
+      max-width:1500px;
+    } 
   </style>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-        <a class="navbar-brand" href="#">Match List Tool</a>
+  
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Match List Tool</a>
         <span class="navbar-text">Data retrieved ACGME Sept 2018</span>
-        <button class="navbar-toggler bg-navy" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <button type="button "class="btn btn-info" onclick="location.reload()">Home</button>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-info"href="#" id="helpNav">Help</button>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="btn btn-info"onclick="javascript:xport.toCSV('resultsTable', 'Match List Results')"  href="#">Export to Excel</button>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    
-    <div class="jumbotron" style="padding-top: 20px; padding-bottom: 10px">
-        <h1 class="display-4">Couples Match Calculator</h1>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#helpNav">Help</a>
+              <!--<button type="button" class="btn btn-info"href="#" id="helpNav">Help</button>-->
+          </li>
+        </ul>
+      </div>
     </div>
-       
-    <div class="container-fluid"style="padding-right: 5%; padding-left: 5%">   
+  </nav>
+    
+  <!-- Header -->
+  <header class="masthead">
+    <br>
+    <br>
+    <div class="container d-flex h-100 align-items-center">
       <form onsubmit="evaluateData(event)">
-      <div class="row">
-      <div class="col-sm-12 col-md-6">
-          <div class="card mb-4">
-              <h5 class="card-header">Step 1: Select Specialties</h5>
-              <div class="card-body text-center">
-                  <select class="custom-select"type="text" " id="Specialty1" required/>
+        <div class="row">
+          <div class="mx-auto text-center col-lg-8">
+            <h1 class="mx-auto text-uppercase">Couples Match</h1>
+            <h2 class="text-white-50 mx-auto mt-2 mb-5">Simple tools designed to make the residency match easy.</h2>
+            <input id="submitBtn" class="btn btn-primary js-scroll-trigger" type="submit" value="Submit"/>
+          </div>
+          <div class="mx-auto text-center col-lg-4">
+            <div class="col-sm-12 col-md-12" style="filter:alpha(opacity=50); opacity:0.8;">
+              <div class="card mb-4">
+                <h5 class="card-header">Step 1: Select Specialties</h5>
+                <div class="card-body text-center">
+                  <select class="custom-select"type="text" id="Specialty1" required/>
                     <option value="">Select Specialty</option>
                   </select>
                   <select class="custom-select"type="text" id="Specialty2" style="margin-top: 20px" required/>
                     <option value="">Select Specialty</option>
                   </select>
+                </div>
               </div>
-          </div>
-      </div>
-      <div class="col-sm-12 col-md-6">
-          <div class="card mb-4">
-              <h5 class="card-header">Step 2: Select Maximum Distance</h5>
-              <div class="card-body text-center">
+            </div>
+            <div class="col-sm-12 col-md-12" style="filter:alpha(opacity=50); opacity:0.8;">
+              <div class="card mb-4">
+                <h5 class="card-header">Step 2: Select Maximum Distance</h5>
+                <div class="card-body text-center">
                   <div><input class="form-control" type="number" name="MaxDist" placeholder="Max Distance (Miles)" max= "6000" min="0" required></div>
+                </div>
+                <div class="card-body text-center" style="padding-top: 0%">
+                  <button type="button" class="btn btn-primary"href="#" id="helpNav" onclick="displayAllPrograms(event)">View All Programs</button>
+                </div>
               </div>
-              <div class="card-body text-center" style="padding-top: 0%">
-                      <button type="button" class="btn btn-outline-info"href="#" id="helpNav" onclick="displayAllPrograms(event)">View All Programs from Selected Specialties</button>
-              </div>
+            </div>
           </div>
-      </div>
-      <div class="container h-100">
-          <div class="row h-100 justify-content-center align-items-center">
-             <input id="submitBtn" class="btn btn-outline-info btn-md mb-4" type="submit" value="Submit"/>
-          </div>
-      </div>
+        </div>
+      </form>
     </div>
-    </form>
-    </div>
-    <div id="resultsContainer" class="container-fluid mb-4" style="padding-right: 5%; padding-left: 5%">
+  </header>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section bg-light">
+    <div class="container">
+
+    <div id="resultsContainer" class="container-fluid mb-4">
       <!--<div id="map"></div>-->
     </div>  
+
+      <!-- Featured Project Row -->
+      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+        <div class="col-xl-8 col-lg-7">
+          <img class="img-fluid mb-3 mb-lg-0" src="img/bg-masthead.jpg" alt="">
+        </div>
+        <div class="col-xl-4 col-lg-5">
+          <div class="featured-text text-center text-lg-left">
+            <h4>Shoreline</h4>
+            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project One Row -->
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="img/demo-image-01.jpg" alt="">
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">Misty</h4>
+                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Two Row -->
+      <div class="row justify-content-center no-gutters">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="img/demo-image-02.jpg" alt="">
+        </div>
+        <div class="col-lg-6 order-lg-first">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-right">
+                <h4 class="text-white">Mountains</h4>
+                <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                <hr class="d-none d-lg-block mb-0 mr-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
     
     <!--help modal-->
     <div class="modal fade" id="helpModal">
@@ -618,8 +705,22 @@
            }, 8000);
         }*/
     </script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/grayscale.min.js"></script>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <!--
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js"></script>
