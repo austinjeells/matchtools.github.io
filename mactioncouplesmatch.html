@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<!--suppress HtmlUnknownTag -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap Core CSS -->
+    <link href="couplesmatch-maction/app/static/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Page specific CSS -->
+    <link href="couplesmatch-maction/app/static/stylesheets/couplesmatch.css rel="stylesheet">
+
+    <title>Rank List Generator for Couples Match</title>
+</head>
+<body>
+    <!--<div class="modal fade" id="indSubModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirm Entries for Submission</h4>
+                    <button type="button" class="btn btn-primary modalBtn" id="submitIndJSON">Submit List</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="indSubBody">
+                    <div class="row">
+                        <div class="col-sm-12 indSubInstructions">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <ul class="instructionsList">
+                                        <li>Each individual in a match pair should create their own Username.</li>
+                                        <li>A Couple ID should be shared by a match pair.</li>
+                                        <li>If you don't have a Couple ID yet, use the Create Couple ID button to
+                                            create one.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h5>
+
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row" id="indIDRow">
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" placeholder="Username" id="subUsername">
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" placeholder="Couple ID" id="subCoupleID">
+                        </div>
+                        <div class="col-sm-1">
+                            <div>
+                                or
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="btn btn-default" id="createIDBtn">Create Couple ID</button>
+                        </div>
+                    </div>
+                    <div class="row" id="indModalLabels">
+                        <div class="col-sm-5 colLabel">Program Name</div>
+                        <div class="col-sm-2 colLabel">Rank</div>
+                        <div class="col-sm-5 colLabel">Location</div>
+                    </div>
+                    <div class="row indSubRow">
+                        <div class="col-sm-5 indProgramName"></div>
+                        <div class="col-sm-2 indRank"></div>
+                        <div class="col-sm-5 indLocation"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!--<div class="modal fade" id="resultsModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Generated Rank List</h4>
+                    <button type="button" class="btn btn-primary modalBtn" id="saveAsXLS">Export as Excel File</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="rankListBody">
+                    <div class="row" id="modalColumnLabelsRow">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-3 colLabel">Applicant A Rank List</div>
+                        <div class="col-sm-3 colLabel">Applicant B Rank List</div>
+                        <div class="col-sm-2 colLabel">Average Rank</div>
+                        <div class="col-sm-2 colLabel">Distance (miles)</div>
+                    </div>
+                    <div class="row rankListRow">
+                        <div class="col-sm-1 numRank"></div>
+                        <div class="col-sm-3 appAProgram"></div>
+                        <div class="col-sm-3 appBProgram"></div>
+                        <div class="col-sm-2 averageRank"></div>
+                        <div class="col-sm-2 distListing"></div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!--<div class="modal fade" id="confirmationModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Submission Successful!</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="confirmationBody">
+                    <table class="table confirmationTable">
+                        <tr>
+                            <th class="right-align">Username</th>
+                            <td id="usernameCell"></td>
+                        </tr>
+                        <tr>
+                            <th class="right-align">Couple ID</th>
+                            <td id="coupleIDCell"></td>
+                        </tr>
+                    </table>
+                    <h4>
+                        Your list was submitted successfully. <span style="color: red">Be sure to store your Username
+                        and Couple ID, as you will be unable to retrieve your data without both.</span>
+                        <br><br>
+                        If your partner has already submitted their list, your results are now available for retrieval.
+                        Otherwise, <b>share your Couple ID with your partner so they may submit their list.</b>
+                        <br><br>
+                        Your list will be available for processing for one month.
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!--<div class="modal fade" id="retrieveModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Retrieve Couples Rank List</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="rankListBody">
+                    <div class="row retrieveRow">
+                        <div class="col-sm-12">
+                            <input type="text" placeholder="Username" class="form-control" id="retrievalUsername">
+                        </div>
+                    </div>
+                    <div class="row retrieveRow">
+                        <div class="col-sm-12">
+                            <input type="text" placeholder="Couple ID" class="form-control" id="retrievalID">
+                        </div>
+                    </div>
+                    <div class="row retrieveRow">
+                        <div class="col-sm-12">
+                            <div class="dropdown sortSelect">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="true">
+                                    Sorting Preferences
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" id="sortPrimaryInd0">Sort by average rank with maximum distance cutoff</a></li>
+                                    <li><a href="#" id="sortPrimaryInd1">Sort by average rank, then distance</a></li>
+                                    <li><a href="#" id="sortPrimaryInd2">Sort by distance, then average rank</a></li>
+                                    <li class="divider" role="separator"></li>
+                                    <li><a href="#" id="noMatchInd0">Do not create "No Match" pairs</a></li>
+                                    <li><a href="#" id="noMatchInd1">Create "No Match" pairs</a></li>
+                                    <li class="divider" role="separator"></li>
+                                    <li><a href="#" id="strictMatchInd0">Prioritize pairs at same program</a></li>
+                                    <li><a href="#" id="strictMatchInd1">Prioritize pairs at different programs</a></li>
+                                    <li><a href="#" id="strictMatchInd2">No preference</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row retrieveRow" id="modalMaxDistRow" style="display: none;">
+                        <div class="col-sm-12">
+                            <input type="text" placeholder="Max Distance (mi)" onfocus="this.type='number'"
+                                   class="form-control" id="retrievalDist">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-primary" id="retrieveBtn">Get Results</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!--<div class="modal fade" id="helpModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Help for Couples Match Tool</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <dl>
+                        <dt>About</dt>
+                        <dd>
+                            This is a web tool created by a medical student designed to help medical students
+                            through the NRMP Couples Match. It takes each participant's personal rank of each program
+                            and generates a sorted list with rank pairs based on average rank and distance.
+                        </dd>
+                        <dt>How does submitting individually work?</dt>
+                        <dd>
+                            Submitting individually allows each partner to submit their personal ranks separately so
+                            your ranks can be a little more candid. If you and your partner choose to submit
+                            individually, you will need to share a Couple ID and each enter a Username. You can
+                            retrieve your rank list as soon as both parties have submitted their personal ranks.
+                            <br><br>
+                            <ol>
+                                <li>Enter your ranks and click Submit Ranks.</li>
+                                <li>Create your Username.</li>
+                                <li>If your partner has not already submitted, create a Couple ID.</li>
+                                <li>Save your Username and Couple ID.</li>
+                                <li>Share your Couple ID with your partner so they may submit their list.</li>
+                                <li>
+                                    After both you and your partner have submitted your lists, click Retrieve
+                                    Results to get your combined rank list.
+                                </li>
+                            </ol>
+                        </dd>
+                        <dt>Is my data stored or used in any way?</dt>
+                        <dd>
+                            If you enter your ranks jointly, your ranks are temporarily stored only if you choose
+                            to export your list to Excel. If enter your ranks separately, the only identifying
+                            information stored is the Username which you provide.
+                            <br>
+                            All data is cleared from the server periodically. While I will never share or use any
+                            stored data for any reason, I still recommend using an alias as your username. This website
+                            is open source as per the link in the upper right.
+                        </dd>
+                        <dt>Can I resubmit my personal rank list using the same Couple ID?</dt>
+                        <dd>
+                            Yes. If you submit a second personal rank list with the same Username and Couple ID, your
+                            first list will be overwritten.
+                        </dd>
+                        <dt>How are locations and distances measured?</dt>
+                        <dd>
+                            Distances are measured using the Haversine Formula on the coordinates listed on the cities
+                            provided by each program in the ERAS Registry. As such, distances are essentially straight-
+                            line distances between two points and do not reflect travel distance by road. Rank Pairs
+                            further than the supplied distance are still shown - just sorted lower than those within
+                            the distance.
+                        </dd>
+                        <dt>Contact?</dt>
+                        <dd>mactiondevs@gmail.com</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!--
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><X!--suppress HtmlUnknownTarget --X>
+                    <a href="/index"><b>Home</b></a></li>
+
+                <li><X!--suppress HtmlUnknownTarget --X>
+                    <a href="/encryption"><b>Encryption Tools</b></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" id="helpNav"><b>Help</b></a></li>
+                <li><a href="https://github.com/nmacklin/MactionCreations"><b>Source</b></a></li>
+            </ul>
+        </div>
+    </nav>-->
+    <!--<div class="page-header" id="header">
+        <h1>Rank List Generator for the Couples Match
+            <span class="tooltipIcon" id="indSubIcon" data-toggle="tooltip" style="display: none;">?</span>
+            <button class="btn btn-primary" type="button" id="indSubBtn">Switch to Joint Submission</button>
+            <p>
+                <small id="headerInstructions">Enter personal ranks individually and submit to generate all possible rank
+                pair combinations.</small>
+            </p>
+        </h1>
+    </div>-->
+    <div class="container-fluid" id="inputRowsContainer">
+        <!--<div class="row" id="buttonRow">
+            <div class="col-sm-3 btnPadding"></div>
+            <div class="col-sm-3 centerButton">
+                <button type="button" class="btn" id="submitRanksBtn">Submit Ranks</button>
+            </div>
+            <div class="col-sm-3 centerButton">
+                <button type="button" class="btn" id="retrieveRanksBtn">Retrieve Results</button>
+            </div>
+            <div class="col-sm-2 noMatchCol" style="display: none;">
+                <div class="dropdown sortSelect">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        Sorting Preferences
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="sortPrimary0">Sort by average rank with maximum distance cutoff</a></li>
+                        <li><a href="#" id="sortPrimary1">Sort by average rank, then distance</a></li>
+                        <li><a href="#" id="sortPrimary2">Sort by distance, then average rank</a></li>
+                        <li class="divider" role="separator"></li>
+                        <li><a href="#" id="noMatch0">Do not include "No Match" pairs</a></li>
+                        <li><a href="#" id="noMatch1">Include "No Match" pairs</a></li>
+                        <li class="divider" role="separator"></li>
+                        <li><a href="#" id="strictMatch0">Prioritize pairs at same program</a></li>
+                        <li><a href="#" id="strictMatch1">Prioritize pairs at different programs</a></li>
+                        <li><a href="#" id="strictMatch2">No preference</a></li>
+                    </ul>
+                </div>
+            </div>-->
+            <div class="col-sm-2 setDistance" style="display: none">
+                <input class="form-control distanceInput" placeholder="Max distance (mi)"
+                       onfocus="this.type='number';" id="maxDist">
+                <span class="tooltipIcon" id="distInfoIcon" data-toggle="tooltip">?</span>
+            </div>
+            <!--<div class="col-sm-3 btnPadding"></div>
+        </div>
+        <div class="row" id="indSubRow"></div>-->
+        <div class="row entryRow">
+            <div class="col-sm-3 deletionColumn">
+                <button type="button" class="btn btn-link delBtn" style="display: none">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+            <div class="col-sm-4 programCol">
+                <div class="input-group">
+                    <input type="text" class="form-control programName typeahead" placeholder="Program Name" data-loc-known="false">
+                </div>
+            </div>
+            <div class="col-sm-2 rankACol">
+                <div class="input-group">
+                    <input type="number" class="form-control rankA" placeholder="Rank">
+                </div>
+            </div>
+            <div class="col-sm-2 locGlyphCol">
+                <span class="glyphicon glyphicon-globe locGlyph" data-toggle="tooltip" style="display: none"></span>
+            </div>
+            <div class="col-sm-1 optionalPaddingDiv"></div>
+        </div>
+    </div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap Javascript -->
+    <script src="couplesmatch-maction/app/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <!-- Residency program database -->
+    <script src="couplesmatch-maction/app/static/data/programDatabase.js"></script>
+    <!-- Twitter TypeAhead JS -->
+    <script src="couplesmatch-maction/app/static/scripts/typeahead.js"></script>
+    <!-- Page-specific scripts for functionality -->
+    <script src="couplesmatch-maction/app/static/scripts/rankListGenerator.js"></script>
+</body>

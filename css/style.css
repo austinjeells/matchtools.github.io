@@ -1,0 +1,44 @@
+#ask {
+  display: none
+}
+
+#results {
+  display: none
+}
+
+#inputbox{
+  font-size:.8rem;
+  font-family:'Varela Round';
+  letter-spacing:.15rem
+}
+
+#items {
+  font-size: 1em;
+  font-family: sans-serif;
+  width: 640px;
+  height: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.ask_answer {
+  margin: 1.5em;
+  padding-top: 3em;
+  padding-bottom: 3em
+}
+
+.dontcare {
+  margin: 0 auto;
+  padding-top: 1em;
+  padding-bottom: 1em
+}
+
+#results_list {
+  width: 400px;
+  margin: 0 auto;
+  font-size: 1.2em;
+}
+
+.comparisons {
+  padding-top: 2em;
+}

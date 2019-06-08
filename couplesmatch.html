@@ -13,13 +13,14 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
       
-    <!-- Custom fonts for this template -->
+    <!-- Custom fonts from grayscale -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="  stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles from grayscale -->
     <link href="css/grayscale.min.css" rel="stylesheet">
+    <link href="couplesmatch-maction/app/static/stylesheets/couplesmatch.css" rel="stylesheet">
 
     <!--
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -60,27 +61,27 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Match List Tool</a>
-        <span class="navbar-text">Data retrieved ACGME Sept 2018</span>
+        <a class="navbar-brand js-scroll-trigger" href="index.html">Residency Match Tools</a>
+        
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
+        <span class="navbar-text">Data retrieved ACGME Sept 2018</span>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>-->
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#projects">Instructions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+            <a class="nav-link js-scroll-trigger" href="#help">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
-          </li>
-          <li class="nav-item">
+          <!--<li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#helpNav">Help</a>
-              <!--<button type="button" class="btn btn-info"href="#" id="helpNav">Help</button>-->
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>
@@ -93,12 +94,12 @@
     <div class="container d-flex h-100 align-items-center">
       <form onsubmit="evaluateData(event)">
         <div class="row">
-          <div class="mx-auto text-center col-lg-8">
+          <div class="mx-auto text-center col-lg-7">
             <h1 class="mx-auto text-uppercase">Couples Match</h1>
-            <h2 class="text-white-50 mx-auto mt-2 mb-5">Simple tools designed to make the residency match easy.</h2>
+            <h2 class="text-white-50 mx-auto mt-2 mb-5">Simple tools designed to make the residency match easy</h2>
             <input id="submitBtn" class="btn btn-primary js-scroll-trigger" type="submit" value="Submit"/>
           </div>
-          <div class="mx-auto text-center col-lg-4">
+          <div class="mx-auto text-center col-lg-5">
             <div class="col-sm-12 col-md-12" style="filter:alpha(opacity=50); opacity:0.8;">
               <div class="card mb-4">
                 <h5 class="card-header">Step 1: Select Specialties</h5>
@@ -144,8 +145,8 @@
         </div>
         <div class="col-xl-4 col-lg-5">
           <div class="featured-text text-center text-lg-left">
-            <h4>Shoreline</h4>
-            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+            <h4>Purpose</h4>
+            <p class="text-black-50 mb-0">Matching into a residency is stressful on its own, but couples matching is even more difficult. When looking at programs, my wife and I wanted to be in the same city but had trouble figuring out which programs are close to each other. I created this program to calculate the distance between programs and filter them by a maximum distance. I hope you find this to be useful.</p>
           </div>
         </div>
       </div>
@@ -159,8 +160,8 @@
           <div class="bg-black text-center h-100 project">
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="text-white">Misty</h4>
-                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
+                <h4 class="text-white">How to Use</h4>
+                <p class="mb-0 text-white-50">A user can choose two specialties: their specialty of choice and their partner's specialty of choice. They then specify the maximum tolerable distance between programs. The tool then calculates the distance between every possible combination of programs between the two specialties. Any combination that is less than the maximum mileage will be displayed.</p>
                 <hr class="d-none d-lg-block mb-0 ml-0">
               </div>
             </div>
@@ -177,13 +178,76 @@
           <div class="bg-black text-center h-100 project">
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-center text-lg-right">
-                <h4 class="text-white">Mountains</h4>
-                <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                <h4 class="text-white">How it Works</h4>
+                <p class="mb-0 text-white-50">Distances are calculated using the Haversine Formula. As such, distances are essentially straight-lines between two points and do not reflect travel distance by road. Zipcodes were used over exact address since many programs in the same hospital system have slightly differing addresses. The data was collected using the ACGME Data Retrieval System for the most recent dataset (2017-2018) and includes only ACGME registered programs.</p>
                 <hr class="d-none d-lg-block mb-0 mr-0">
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Help Section -->
+  <section id="help" class="contact-section Xbg-black">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-6 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fab fa-github text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Source</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">
+                <a href="https://github.com/austinjeells/matchtools.github.io">matchtools.github.io</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Email</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">
+                <a href="#">residencymatchtools@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-mobile-alt text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Phone</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">+1 (555) 902-8832</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      -->
+      </div>
+      
+      <div class="social d-flex justify-content-center">
+        <a href="http://www.twitter.com" class="mx-2">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="http://www.facebook.com" class="mx-2">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="http://www.maps.google.com" class="mx-2">
+          <i class="fas fa-map-marked-alt"></i>
+        </a>
       </div>
 
     </div>
@@ -470,14 +534,14 @@
       //console.log(tableData);
 
       $('#resultsContainer').append(tableData);
-      var table = $('#resultsTable').DataTable({
-        columns: [{ title: filteredCombinedJSON[1].Specialty1}, {title: "City"}, { title: "State"}, { title: "Distance" }, { title: filteredCombinedJSON[1].Specialty2}, { title: "City" }, { title: "State"}],
-        paging: false,
-        lengthChange: false,
-        buttons: ['copy','excel','pdf','colvis'],
-        "order": [ 3, 'asc' ],
-        //"lengthMenu": [ [-1, 25, 50, 100], ["All", 25, 50, 100] ]
-      }); 
+        var table = $('#resultsTable').DataTable({
+          columns: [{title: filteredCombinedJSON[1].Specialty1}, {title: "City"}, {title: "State"}, {title: "Distance"}, {title: filteredCombinedJSON[1].Specialty2}, {title: "City"}, {title: "State"}],
+          paging: false,
+          lengthChange: false,
+          buttons: ['copy','excel','pdf','colvis'],
+          "order": [ 3, 'asc' ],
+          //"lengthMenu": [[-1, 25, 50, 100], ["All", 25, 50, 100]]
+        }); 
       
       table.buttons().container()
           .appendTo('#resultsTable_wrapper .col-md-6:eq(0)');
@@ -694,9 +758,9 @@
       } */
     </script>
     <script>
-      document.getElementById('helpNav').addEventListener('click', function () {
+      /*document.getElementById('helpNav').addEventListener('click', function () {
         $('#helpModal').modal('show');
-      });
+      });*/
 
      /*function modal(){
            $('.modal').modal('show');
