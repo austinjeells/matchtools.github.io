@@ -1,4 +1,5 @@
-[{"SpecialtyName":"Allergy and Immunology",
+[
+{"SpecialtyName":"Allergy and Immunology",
 "IsSubspecialty":0,
 "ProgramName":"University of Alabama Medical Center Program",
 "ProgramCity":"Birmingham",
@@ -5471,7 +5472,8 @@
 {"SpecialtyName":"Emergency Medicine",
 "IsSubspecialty":0,
 "ProgramName":"Jackson Memorial Hospital/Jackson Health System Program",
-"ProgramCity":"Miami",
+"ProgramCity":"Miami,
+",
 "ProgramStateNameAbb":"FL",
 "ProgramLengthofTraining":3,
 "PositionsFilledTotal":31,
@@ -112136,4 +112138,5 @@
 "ProgramLengthofTraining":2,
 "PositionsFilledTotal":2,
 "latitude":43.0513426,
-"longitude":-88.0411993}]
+"longitude":-88.0411993}
+]
