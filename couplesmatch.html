@@ -361,7 +361,7 @@
           $.getJSON('specialtiesArr.json', function(data){
             html_code += '<option value="">Select Specialty</option>';
             $.each(data, function(key, value){
-              html_code += '<option value="'+value.name+'">'+value.name+'</option>';
+              html_code += '<option value="'+value.name+'">'+value.FormalName+'</option>';
             });
 
             $('#Specialty1').html(html_code);
@@ -381,7 +381,7 @@
         //console.log(submittedData);
 
         $.ajax({
-          url: 'ACGMEDatasetJSON.json',
+          url: '20182019ACGMEDatasetJSON.json',
           dataType: 'json',
           type:'get',
           cache: false,
@@ -452,7 +452,7 @@
 
       function loadJSONarray(submittedData){
         $.ajax({
-          url: 'ACGMEDatasetJSON.json',
+          url: '20182019ACGMEDatasetJSON.json',
           dataType: 'json',
           type:'get',
           cache: false,
